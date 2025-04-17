@@ -1,0 +1,45 @@
+{
+  "name": "ovsx-test-file",
+  "displayName": "Open VSX Test File",
+  "description": "Find an associated test and run it",
+  "version": "0.0.1",
+  "publisher": "your-publisher-id",
+  "engines": {
+    "vscode": "^1.97.0"
+  },
+  "license": "MIT",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:testFile.run"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "testFile.run",
+        "title": "Run a test file"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "node ./out/test/runTest.js"
+  },
+  "dependencies": {
+    "glob": "^11.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awead/ovsx-test-file.git"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^22.14.1",
+    "@types/vscode": "^1.97.1",
+    "@vscode/test-electron": "^2.3.9",
+    "mocha": "^10.3.0",
+    "typescript": "^5.0.0"
+  }
+}
