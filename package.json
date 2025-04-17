@@ -11,21 +11,28 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:testFile.run"
-  ],
   "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "build": "tsc -p . && tsc -p ./tsconfig.test.json",
+    "test": "node ./out/test/runTest.js",
+    "vsce:package": "vsce package --no-yarn --githubBranch main"
+  },
   "contributes": {
     "commands": [
       {
         "command": "testFile.run",
         "title": "Run a test file"
+      },
+      {
+        "command": "testFile.runLine",
+        "title": "Run a test file on the current line"
+      },
+      {
+        "command": "testFile.runSuite",
+        "title": "Run all tests in the suite"
       }
     ]
-  },
-  "scripts": {
-    "build": "tsc",
-    "test": "node ./out/test/runTest.js"
   },
   "dependencies": {
     "glob": "^11.0.1"
@@ -37,9 +44,12 @@
   "devDependencies": {
     "@types/mocha": "^10.0.6",
     "@types/node": "^22.14.1",
+    "@types/sinon": "^17.0.4",
     "@types/vscode": "^1.97.1",
     "@vscode/test-electron": "^2.3.9",
+    "@vscode/vsce": "^3.3.2",
     "mocha": "^10.3.0",
+    "sinon": "^20.0.0",
     "typescript": "^5.0.0"
   }
 }

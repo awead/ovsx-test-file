@@ -6,9 +6,9 @@
     "outDir": "out",
     "strict": true,
     "esModuleInterop": true,
-    "rootDir": "src",
+    "rootDir": ".",
     "sourceMap": true
   },
-  "include": ["src/**/*"],
+  "include": ["test/**/*"],
   "exclude": ["node_modules"]
 }

@@ -19,4 +19,7 @@ npm run build
 
 ## References
 
-Inspired by [Neotest](https://github.com/nvim-neotest/neotest)
+Inspired by
+
+- [Neotest](https://github.com/nvim-neotest/neotest)
+- [Rails Run Specs](https://github.com/noku/rails-run-spec-vscode)

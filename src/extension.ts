@@ -1,20 +1,13 @@
-import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
+import * as vscode from "vscode";
+import * as terminal from "./terminal";
 
-export function activate(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand('testFile.run', async () => {
-    const editor = vscode.window.activeTextEditor;
+export function activate(context: vscode.ExtensionContext): void {
 
-    if (!editor) {
-      vscode.window.showErrorMessage('No active editor.');
-      return;
-    }
+  console.log("Open VSX Test File plugin activated");
 
-    const activeFile = vscode.workspace.asRelativePath(editor.document.uri.fsPath);
-  });
+  context.subscriptions.push(vscode.commands.registerCommand("testFile.run", () => terminal.executeTestFile({})));
 
-  context.subscriptions.push(disposable);
 }
 
+// This function is called when the extension is deactivated
 export function deactivate() {}
