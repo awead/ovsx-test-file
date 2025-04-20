@@ -16,23 +16,51 @@
     "compile": "tsc -p ./",
     "build": "tsc -p . && tsc -p ./tsconfig.test.json",
     "test": "node ./out/test/runTest.js",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
     "vsce:package": "vsce package --no-yarn --githubBranch main"
   },
   "contributes": {
     "commands": [
       {
         "command": "testFile.run",
-        "title": "Run a test file"
+        "title": "Run all the tests in the current file"
+      },
+      {
+        "command": "testFile.runPrevious",
+        "title": "Run the previous test(s)"
       },
       {
         "command": "testFile.runLine",
-        "title": "Run a test file on the current line"
+        "title": "Run the test on the current line"
       },
       {
         "command": "testFile.runSuite",
         "title": "Run all tests in the suite"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Test File",
+      "properties": {
+        "ovsx-test-file.executable": {
+          "type": "string",
+          "default": "echo",
+          "description": "Command used to run tests",
+          "scope": "language-overridable"
+        },
+        "ovsx-test-file.focusTerminal": {
+          "type": "boolean",
+          "default": true,
+          "description": "Focus the terminal before running a test file",
+          "scope": "language-overridable"
+        },
+        "ovsx-test-file.clearTerminal": {
+          "type": "boolean",
+          "default": true,
+          "description": "Clear the terminal before running a test file",
+          "scope": "language-overridable"
+        }
+      }
+    }
   },
   "dependencies": {
     "glob": "^11.0.1"
@@ -46,8 +74,11 @@
     "@types/node": "^22.14.1",
     "@types/sinon": "^17.0.4",
     "@types/vscode": "^1.97.1",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
     "@vscode/test-electron": "^2.3.9",
     "@vscode/vsce": "^3.3.2",
+    "eslint": "^9.25.0",
     "mocha": "^10.3.0",
     "sinon": "^20.0.0",
     "typescript": "^5.0.0"
