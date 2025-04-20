@@ -16,6 +16,7 @@
     "compile": "tsc -p ./",
     "build": "tsc -p . && tsc -p ./tsconfig.test.json",
     "test": "node ./out/test/runTest.js",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
     "vsce:package": "vsce package --no-yarn --githubBranch main"
   },
   "contributes": {
@@ -69,8 +70,11 @@
     "@types/node": "^22.14.1",
     "@types/sinon": "^17.0.4",
     "@types/vscode": "^1.97.1",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
     "@vscode/test-electron": "^2.3.9",
     "@vscode/vsce": "^3.3.2",
+    "eslint": "^9.25.0",
     "mocha": "^10.3.0",
     "sinon": "^20.0.0",
     "typescript": "^5.0.0"
