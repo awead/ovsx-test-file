@@ -23,6 +23,18 @@ export function executeTestFile(options: RunOptions): void {
   executeInTerminal(path, options);
 }
 
+export function executeLastTestFile(): void {
+  if (lastCommandText) {
+    const specTerminal = getOrCreateTerminal(SPEC_TERMINAL_NAME);
+    specTerminal.sendText(lastCommandText);
+  }
+}
+
+//
+// Private functions
+//
+
+
 function executeInTerminal(path: string, options: RunOptions): void {
   const specTerminal = getOrCreateTerminal(SPEC_TERMINAL_NAME);
   const execute = () => executeCommand(specTerminal, path, options);

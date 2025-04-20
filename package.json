@@ -23,11 +23,15 @@
     "commands": [
       {
         "command": "testFile.run",
-        "title": "Run a test file"
+        "title": "Run all the tests in the current file"
+      },
+      {
+        "command": "testFile.runPrevious",
+        "title": "Run the previous test(s)"
       },
       {
         "command": "testFile.runLine",
-        "title": "Run a test file on the current line"
+        "title": "Run the test on the current line"
       },
       {
         "command": "testFile.runSuite",

@@ -15,11 +15,11 @@ describe('Extension Test Suite', function () {
   });
 
   context('when there is no activeTextEditor', () => {
-    it('shows an error message', () => {
+    it('shows an error message', async () => {
       const spy = sinon.spy(vscode.window, 'showErrorMessage');
       const getActiveTextEditorStub = sinon.stub(vscode.window, 'activeTextEditor').get(() => undefined);
 
-      executeTestFile({});
+      await executeTestFile({});
 
       assert.ok(spy.calledWith('No active file to test'));
 
