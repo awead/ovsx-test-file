@@ -18,6 +18,7 @@ windsurf --install-extension ovsx-test-file-0.0.1.vsix
 ```bash
 npm install
 npm run build
+npm run test
 ```
 
 ## References
