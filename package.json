@@ -15,7 +15,7 @@
   "scripts": {
     "compile": "tsc -p ./",
     "build": "tsc -p . && tsc -p ./tsconfig.test.json",
-    "test": "node ./out/test/runTest.js",
+    "test": "rm -rf out && npm run build && node ./out/test/runTest.js",
     "lint": "eslint src/**/*.ts test/**/*.ts",
     "vsce:package": "vsce package --no-yarn --githubBranch main"
   },
@@ -23,19 +23,19 @@
     "commands": [
       {
         "command": "testFile.run",
-        "title": "Run all the tests in the current file"
+        "title": "Test File: Run all the tests"
       },
       {
         "command": "testFile.runPrevious",
-        "title": "Run the previous test(s)"
+        "title": "Test File: Run the previous test"
       },
       {
         "command": "testFile.runLine",
-        "title": "Run the test on the current line"
+        "title": "Test File: Run the test from the current line"
       },
       {
         "command": "testFile.runSuite",
-        "title": "Run all tests in the suite"
+        "title": "Test File: Run all tests in the suite"
       }
     ],
     "configuration": {
@@ -63,7 +63,8 @@
     }
   },
   "dependencies": {
-    "glob": "^11.0.1"
+    "glob": "^11.0.1",
+    "typescript": "^5.0.0"
   },
   "repository": {
     "type": "git",

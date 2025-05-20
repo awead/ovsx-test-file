@@ -4,6 +4,7 @@ interface RunOptions {
   path?: string;
   lineNumber?: number;
   commandText?: string;
+  currentFunction?: string | undefined;
 }
 
 const SPEC_TERMINAL_NAME = 'Test Runner';
@@ -33,7 +34,6 @@ export function executeLastTestFile(): void {
 //
 // Private functions
 //
-
 
 function executeInTerminal(path: string, options: RunOptions): void {
   const specTerminal = getOrCreateTerminal(SPEC_TERMINAL_NAME);
