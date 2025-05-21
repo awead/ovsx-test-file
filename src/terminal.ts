@@ -3,7 +3,6 @@ import * as vscode from 'vscode';
 interface RunOptions {
   path?: string;
   lineNumber?: number;
-  commandText?: string;
   currentFunction?: string | undefined;
 }
 
@@ -70,14 +69,29 @@ function getTerminalName(prefix: string): string {
 function executeCommand(specTerminal: vscode.Terminal, fileName: string, options: RunOptions): void {
   specTerminal.show(shouldFocusTerminal());
 
-  let lineNumberText = options.lineNumber ? `:${options.lineNumber}` : "",
-    commandText = options.commandText || `${getExecutable()} ${fileName}${lineNumberText}`;
+  let commandSuffix = getCommandSuffix(options);
 
-  console.log("Executing command:", commandText);
+  let commandText = `${getExecutable()} ${fileName}${commandSuffix}`;
 
   specTerminal.sendText(commandText);
 
   lastCommandText = commandText;
+}
+
+function getCommandSuffix(options: RunOptions): string {
+  if (!options.lineNumber && !options.currentFunction) {
+    return "";
+  }
+
+  const findLineUsing = getFindLineUsing();
+
+  if (findLineUsing === "lineNumber") {
+    return `:${options.lineNumber}`;
+  } else if (findLineUsing === "currentFunction") {
+    return `::${options.currentFunction}`;
+  } else {
+    return "";
+  }
 }
 
 function shouldClearTerminal(): boolean {
@@ -94,4 +108,10 @@ function getExecutable(): string | undefined {
   const doc = vscode.window.activeTextEditor?.document;
   const config = vscode.workspace.getConfiguration('ovsx-test-file', doc);
   return config.get<string | undefined>("executable");
+}
+
+function getFindLineUsing(): string | undefined {
+  const doc = vscode.window.activeTextEditor?.document;
+  const config = vscode.workspace.getConfiguration('ovsx-test-file', doc);
+  return config.get<string | undefined>("findLineUsing");
 }

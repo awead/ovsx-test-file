@@ -58,6 +58,14 @@
           "default": true,
           "description": "Clear the terminal before running a test file",
           "scope": "language-overridable"
+        },
+        "ovsx-test-file.findLineUsing": {
+          "type": "string",
+          "default": "lineNumber",
+          "enum": ["lineNumber", "currentFunction"],
+          "enumDescriptions": ["Use the line number of the current line", "Use the name of the current function"],
+          "description": "Method used to find the line number of the test to run",
+          "scope": "language-overridable"
         }
       }
     }
